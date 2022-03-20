@@ -6,7 +6,7 @@ spring:
     username: queueplay
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         alect: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -14,3 +14,13 @@ spring:
         show_sql: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 316334159584-q965lik1isb2pua3ius2tg9k8l2phhq6.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
