@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@NoArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,9 +25,17 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String role;
+    private String name;
+    private String picture;
 
-    protected User() {
+    @Builder
 
+    public User(String email, String password, String role, String name, String picture) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.name = name;
+        this.picture = picture;
     }
 
 
