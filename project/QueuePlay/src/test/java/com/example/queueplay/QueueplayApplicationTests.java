@@ -1,10 +1,10 @@
-package taegyu.queueplay;
+package com.example.queueplay;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class QueuePlayApplicationTests {
+class QueueplayApplicationTests {
 
     @Test
     void contextLoads() {
