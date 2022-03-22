@@ -28,7 +28,6 @@ public class OAuthService extends DefaultOAuth2UserService {
         log.info("{}", userRequest);
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
         User user = userRepository.findByEmail(oAuth2User.getAttribute("email"));
 
