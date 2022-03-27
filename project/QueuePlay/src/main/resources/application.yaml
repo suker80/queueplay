@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    password: 1234
+    url: jdbc:mysql://localhost:3306/queueplay
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: queueplay
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        alect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: false
+        show_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 316334159584-q965lik1isb2pua3ius2tg9k8l2phhq6.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+  rabbitmq:
+    host: localhost
+    username: user
+    password: 1234
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    suffix: .html
