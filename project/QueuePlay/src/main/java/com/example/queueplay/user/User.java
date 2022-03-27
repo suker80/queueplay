@@ -56,6 +56,12 @@ public class User implements UserDetails {
 
     }
 
+    public String changeName(String name) {
+        this.name = name;
+        return this.name;
+
+    }
+
     @Override
     public String getUsername() {
         return null;
