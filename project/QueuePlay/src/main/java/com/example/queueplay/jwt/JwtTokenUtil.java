@@ -20,8 +20,7 @@ public class JwtTokenUtil {
     public static final long JWT_TOKEN_VALIDITY = 60;
     public static final long JWT_REFRESH_VALIDITY = 60 * 60 * 24 * 7;
 
-    @Value("jwt.secret.access")
-    private String secret;
+    private String secret = "secret";
 
     //retrieve username from jwt token
     public String getSubjectFromToken(String token) {
