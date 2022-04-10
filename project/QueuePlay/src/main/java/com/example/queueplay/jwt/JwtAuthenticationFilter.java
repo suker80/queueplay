@@ -2,6 +2,8 @@ package com.example.queueplay.jwt;
 
 import com.example.queueplay.user.User;
 import com.example.queueplay.user.UserLoginRequest;
+import com.example.queueplay.user.UserLoginSuccessDto;
+import com.example.queueplay.user.UserMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +26,7 @@ import java.util.Map;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
+    private final UserMapper mapper;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -31,7 +34,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         try {
             UserLoginRequest user = om.readValue(request.getInputStream(), UserLoginRequest.class);
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword(), null);
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
 
             return authenticationManager.authenticate(token);
         } catch (IOException e) {
@@ -54,6 +57,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String accessToken = jwtTokenUtil.AccessGenerateToken(claims);
 
         response.addHeader("Authorization", "Bearer " + accessToken);
+        UserLoginSuccessDto userLoginSuccessDto = mapper.userToUserLoginSuccessDto(user);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String loginData = objectMapper.writeValueAsString(userLoginSuccessDto);
+        response.getWriter().write(loginData);
 
 
     }
