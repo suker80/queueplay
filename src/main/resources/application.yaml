@@ -32,3 +32,6 @@ spring:
     prefix: classpath:/templates/
     cache: false
     suffix: .html
+  devtools:
+    restart:
+      enabled: true
