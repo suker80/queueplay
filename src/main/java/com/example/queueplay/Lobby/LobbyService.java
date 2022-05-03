@@ -2,6 +2,8 @@ package com.example.queueplay.Lobby;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +25,11 @@ public class LobbyService {
         Lobby lobby = mapper.lobbyCreateDtoToLobby(lobbyCreateDto);
         lobbyRepository.save(lobby);
         return lobby.getId();
+    }
+
+    public Page<Lobby> pageLobby(Pageable pageable) {
+
+        return lobbyRepository.findAll(pageable);
     }
 
 }
