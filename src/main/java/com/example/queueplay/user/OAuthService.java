@@ -19,9 +19,6 @@ public class OAuthService extends DefaultOAuth2UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public OAuthService() {
-        super();
-    }
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -41,7 +38,7 @@ public class OAuthService extends DefaultOAuth2UserService {
 
     }
 
-    private User registerNew(OAuth2User userInfo) {
+    private void registerNew(OAuth2User userInfo) {
         Map<String, Object> attributes = userInfo.getAttributes();
         User build = User.builder()
                 .email((String) attributes.get("sub"))
@@ -50,8 +47,10 @@ public class OAuthService extends DefaultOAuth2UserService {
                 .name((String) attributes.get("name"))
                 .build();
 
-        return userRepository.save(build);
+        userRepository.save(build);
     }
 
-
+    public OAuthService() {
+        super();
+    }
 }

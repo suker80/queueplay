@@ -3,7 +3,6 @@ package com.example.queueplay.Rabbit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.core.Binding;
-import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;

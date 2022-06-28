@@ -1,5 +1,7 @@
 package com.example.queueplay.user;
 
+import com.example.queueplay.user.dto.UserJoinRequest;
+import com.example.queueplay.user.dto.UserNameChangeRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +16,15 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/join")
-    public void join(@Valid @RequestBody UserJoinDto userJoinDto) {
+    public void join(@Valid @RequestBody UserJoinRequest userJoinRequest) {
 
-        userService.join(userJoinDto);
+        userService.join(userJoinRequest);
     }
 
     @PostMapping("/user/name")
-    public String changeName(@Valid @RequestBody UserNameChangeDto userNameChangeDto, @AuthenticationPrincipal User user) {
+    public String changeName(@Valid @RequestBody UserNameChangeRequest userNameChangeRequest, @AuthenticationPrincipal User user) {
 
-        return userService.changeName(userNameChangeDto.getName(), user);
+        return userService.changeName(userNameChangeRequest.getName(), user);
     }
 
     @PostMapping("/user/picture")
@@ -32,4 +34,8 @@ public class UserController {
 
     }
 
+    @GetMapping("/user/test")
+    public String test() {
+        return "test";
+    }
 }

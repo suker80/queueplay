@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import java.util.List;
 
 import static com.example.queueplay.Lobby.QLobby.lobby;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomLobbyRepositoryImplTest {
 

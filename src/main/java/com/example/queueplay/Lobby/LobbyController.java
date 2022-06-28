@@ -30,4 +30,9 @@ public class LobbyController {
     public Page<Lobby> PageLobby(Pageable pageable) {
         return lobbyService.pageLobby(pageable);
     }
+
+    @GetMapping("/devtools")
+    public String devtoolsTest() {
+        return "Hello devtools!";
+    }
 }

@@ -1,13 +1,14 @@
 package com.example.queueplay.user;
 
+import com.example.queueplay.user.dto.UserLoginSuccessResponse;
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface UserMapper {
-    User UserLoginSuccessDtoToUser(UserLoginSuccessDto userLoginSuccessDto);
+    User UserLoginSuccessDtoToUser(UserLoginSuccessResponse userLoginSuccessResponse);
 
-    UserLoginSuccessDto userToUserLoginSuccessDto(User user);
+    UserLoginSuccessResponse userToUserLoginSuccessDto(User user);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateUserFromUserLoginSuccessDto(UserLoginSuccessDto userLoginSuccessDto, @MappingTarget User user);
+    void updateUserFromUserLoginSuccessDto(UserLoginSuccessResponse userLoginSuccessResponse, @MappingTarget User user);
 }

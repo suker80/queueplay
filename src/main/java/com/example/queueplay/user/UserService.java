@@ -1,9 +1,8 @@
 package com.example.queueplay.user;
 
+import com.example.queueplay.user.dto.UserJoinRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,10 +20,10 @@ public class UserService {
     @Value("${file.dir}")
     private String fileDir;
 
-    public void join(UserJoinDto userJoinDto) {
+    public void join(UserJoinRequest userJoinRequest) {
         userRepository.save(User.builder()
-                .email(userJoinDto.getEmail())
-                .password(passwordEncoder.encode(userJoinDto.getPassword()))
+                .email(userJoinRequest.getEmail())
+                .password(passwordEncoder.encode(userJoinRequest.getPassword()))
                 .role("ROLE_User")
                 .build());
     }
@@ -35,6 +34,7 @@ public class UserService {
 
     public void changePicture(MultipartFile file) throws IOException {
         String filename = file.getOriginalFilename();
+        assert filename != null;
         String ext = filename.substring(filename.lastIndexOf("."));
         String uuid = UUID.randomUUID().toString();
 
